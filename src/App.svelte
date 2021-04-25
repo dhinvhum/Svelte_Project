@@ -6,7 +6,6 @@
 
   let arrlist = [];
 
-  let addItembutton = "add item";
   let showModaladdItem = false;
   let showModaleditItem = false;
   let idlist = null;
@@ -36,7 +35,7 @@
   </p>
 
   <div class="addItemMode">
-    <button on:click={addItemModebox}>{addItembutton}</button>
+    <button on:click={addItemModebox}>add item</button>
   </div>
 
   <table>

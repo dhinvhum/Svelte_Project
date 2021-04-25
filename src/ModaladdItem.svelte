@@ -1,30 +1,29 @@
 <script>
   import { db } from "./firebase";
-  export let showModaladdItem = false;
+  export let showModaladdItem;
   let newItemText = "";
   let newQuantity = "";
   let invalid = { item: "", quantity: "" };
 
-  function addItem() {
-    if (newItemText != "" && newQuantity != "") {
+  function addItem(x, y) {
+    console.log(x)
+    if (x != "" && y != "") {
       db.collection("itemlist").add({
-        item: newItemText,
-        quantity: newQuantity,
+        item: x,
+        quantity: y,
       });
-      newItemText = "";
-      newQuantity = "";
       showModaladdItem = false;
 
-      alert("add an item already")
+      alert("add " + x +" already");
     }
 
-    if (newItemText == "") {
+    if (x == "") {
       invalid.item = "please input item";
     } else {
       invalid.item = "";
     }
 
-    if (newQuantity == "") {
+    if (y == "") {
       invalid.quantity = "plsea input quantity";
     } else {
       invalid.quantity = "";
@@ -52,19 +51,19 @@
 
       <div class="centercol">
         <div class="colinput">
-          <input placeholder={"item"} bind:value={newItemText} />
+          <input placeholder={"item"} bind:this={newItemText} />
           <div>
             <span>{invalid.item}</span>
           </div>
         </div>
         <div class="colinput">
-          <input placeholder={"quantity"} bind:value={newQuantity} />
+          <input type="number" placeholder={"quantity"} bind:this={newQuantity} />
           <div>
             <span>{invalid.quantity}</span>
           </div>
         </div>
       </div>
-      <button class="button" on:click={addItem(newItemText, newQuantity)}
+      <button class="button" on:click={addItem(newItemText.value, newQuantity.value)}
         >confirm</button
       >
     </div>
@@ -102,7 +101,7 @@
 
   .button {
     margin-top: 20px;
-    background-color: #454D66;
+    background-color: #454d66;
     border: none;
     padding: 0.7em;
     color: whitesmoke;
@@ -131,5 +130,4 @@
     margin-right: auto;
     width: 50%;
   }
-
 </style>

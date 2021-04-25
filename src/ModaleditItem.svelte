@@ -57,13 +57,13 @@
                 <div>
                   <span>item</span>
                 </div>
-                <input value={id.data().item} bind:this={newItemText} />
+                <input value={id.data().item} ondblclick='this.value=""' bind:this={newItemText} />
               </div>
               <div class="colinput">
                 <div>
                   <span>quantity</span>
                 </div>
-                <input value={id.data().quantity} bind:this={newQuantity} />
+                <input type="number" value={id.data().quantity} ondblclick='this.value=""' bind:this={newQuantity} />
               </div>
             </div>
           {/if}
