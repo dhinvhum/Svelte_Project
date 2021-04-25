@@ -1,9 +1,7 @@
 <script>
-  import App from "./App.svelte";
-
   import { db } from "./firebase";
 
-  export let showModaleditItem = false;
+  export let showModaleditItem;
   export let idlist;
 
   let arrlist = [];
@@ -57,13 +55,22 @@
                 <div>
                   <span>item</span>
                 </div>
-                <input value={id.data().item} ondblclick='this.value=""' bind:this={newItemText} />
+                <input
+                  value={id.data().item}
+                  ondblclick='this.value=""'
+                  bind:this={newItemText}
+                />
               </div>
               <div class="colinput">
                 <div>
                   <span>quantity</span>
                 </div>
-                <input type="number" value={id.data().quantity} ondblclick='this.value=""' bind:this={newQuantity} />
+                <input
+                  type="number"
+                  value={id.data().quantity}
+                  ondblclick='this.value=""'
+                  bind:this={newQuantity}
+                />
               </div>
             </div>
           {/if}

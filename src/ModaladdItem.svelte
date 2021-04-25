@@ -6,7 +6,6 @@
   let invalid = { item: "", quantity: "" };
 
   function addItem(x, y) {
-    console.log(x)
     if (x != "" && y != "") {
       db.collection("itemlist").add({
         item: x,

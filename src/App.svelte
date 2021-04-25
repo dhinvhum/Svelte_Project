@@ -18,14 +18,14 @@
     showModaladdItem = !showModaladdItem;
   }
 
-  function edittemModebox(list) {
+  function editItemModebox(list) {
     idlist = list;
     showModaleditItem = !showModaleditItem;
   }
 </script>
 
 <ModaladdItem {showModaladdItem} on:click={addItemModebox} />
-<ModaleditItem {idlist} {showModaleditItem} on:click={edittemModebox(idlist)} />
+<ModaleditItem {idlist} {showModaleditItem} on:click={editItemModebox(idlist)} />
 
 <main>
   <h1>Svelte Item List</h1>
@@ -53,7 +53,7 @@
           {listItem.data().quantity}
         </td>
         <td>
-          <button class="editbutton" on:click={edittemModebox(listItem.id)}
+          <button class="editbutton" on:click={editItemModebox(listItem.id)}
             >edit</button
           >
         </td>
