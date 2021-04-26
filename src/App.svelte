@@ -1,14 +1,17 @@
 <script>
-  import { dataset_dev } from "svelte/internal";
   import { db } from "./firebase";
   import ModaladdItem from "./ModaladdItem.svelte";
   import ModaleditItem from "./ModaleditItem.svelte";
+  import Modelsearching from "./Modalsearching.svelte";
 
   let arrlist = [];
 
   let showModaladdItem = false;
   let showModaleditItem = false;
+  let showModalsearch = false;
   let idlist = null;
+  let searchIuput = "";
+  let searchText = "";
 
   db.collection("itemlist").orderBy("item", "asc").onSnapshot((snapData) => {
     arrlist = snapData.docs;
@@ -22,10 +25,16 @@
     idlist = list;
     showModaleditItem = !showModaleditItem;
   }
+
+  function seaching(x) {
+    searchText = x;
+    showModalsearch = !showModalsearch;
+  }
 </script>
 
 <ModaladdItem {showModaladdItem} on:click={addItemModebox} />
 <ModaleditItem {idlist} {showModaleditItem} on:click={editItemModebox(idlist)} />
+<Modelsearching {searchText} {showModalsearch} on:click={seaching(searchText)} />
 
 <main>
   <h1>Svelte Item List</h1>
@@ -33,6 +42,13 @@
   <p>
     <b>Svelte</b> with Firebase Ftirestore -create -read -update -delete in realtime
   </p>
+
+  <div>
+    <input placeholder={"search"} bind:this={searchIuput}/>
+    <button class="editbutton" on:click={seaching(searchIuput.value)}
+            >search</button
+          >
+  </div>
 
   <div class="addItemMode">
     <button on:click={addItemModebox}>add item</button>
